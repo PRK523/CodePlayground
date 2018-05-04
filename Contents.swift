@@ -434,7 +434,7 @@ else{
         
         for item in d {
             var arr_d = Array(item)
-            //print(arr_d)
+            print(arr_d)
             var pi = 0
             var pj = 0
             while pi < arr.count && pj < arr_d.count {
@@ -519,5 +519,125 @@ func evenOddSeries(num: Int){
 }
 
 evenOddSeries(num: 100)
+
+
+//longest word in a string by deleting unwanted characters
+
+func longestWordInString(s: String, d: [String]) -> String{
+    var result = ""
+    var arr = Array(s)
+    
+    for item in d{
+        var arr_d = Array(item)
+        var pi = 0
+        var pj = 0
+        while pi < arr.count && pj < arr_d.count{
+            pj += (arr[pi] == arr_d[pj] ? 1 : 0 )
+            pi += 1
+        }
+        
+
+        if pj == arr_d.count && (result.count < arr_d.count ||
+            (result.count == arr_d.count && result > item)) {
+            result = item
+        }
+    }
+    return result
+}
+
+longestWordInString(s:"abpcplea", d:["ale", "apple","plea"])
+
+
+var arr1 = [1, 2, 4]
+let arr2 = [4, 5, 6]
+let finalArray = [arr1, arr2].flatMap({ (element: [Int]) -> [Int] in
+    return element
+})
+print(finalArray)
+
+
+var numbers = [0, 2, 3, 5, 10, 2]
+numbers.sorted() {
+    return $0 < $1
+}
+
+
+var values = [10, 0, 20]
+// Sort with short closure syntax.
+values.sort(by: { v1, v2 in v1 < v2 } )
+print(values)
+
+
+//removes duplicates within a string using NSOrderedSet function
+let string = "wommbat"
+let array = string.map { String($0) }
+let set = NSOrderedSet(array: array)
+let letters = Array(set) as! Array<String>
+print(letters.joined())
+
+
+//Sort a string array by length
+
+extension Collection where Iterator.Element == String{
+    func stringSort() -> [String] {
+        return self.sorted{ $0.count > $1.count }
+    }
+}
+
+["pqr","ab","d"].stringSort()
+
+
+/*for i in stride(from: 1, to: 17, by: 4){
+    print(i)
+}*/
+
+//"8,9, , 12, 2,7,, 19, 3, 4, 11, 14, 28"
+
+
+
+let str = "8,9, , 12, 2,7,, 19, 3, 4, 11, 14, 28"
+let strArr = str.split(separator: ",")
+
+var ares = [Int]()
+for item in strArr {
+    //var res = ""
+    let components = item.components(separatedBy: CharacterSet.decimalDigits.inverted)
+    //print(components)
+    let part: String = components.joined()
+    if let intVal = Int(part) {
+        //print("\(intVal)")
+        //res += "\(intVal)"
+        //print(res)
+        ares.append(intVal)
+    }
+}
+let list = ares
+let min = list.min()
+//print(min)
+
+func minFromString(str: String) -> Int? {
+    let strArr = str.split(separator: ",")
+    
+    var ares = [Int]()
+    for item in strArr {
+        //var res = ""
+        let components = item.components(separatedBy: CharacterSet.decimalDigits.inverted)
+        //print(components)
+        let part: String = components.joined()
+        if let intVal = Int(part) {
+            //print("\(intVal)")
+            //res += "\(intVal)"
+            //print(res)
+            ares.append(intVal)
+        }
+    }
+    let list = ares
+    let min = list.min()
+    return min
+}
+
+minFromString(str: "8,9, , 12, 2,7,, 19, 3, 4, 11, 14, 28")
+
+
 
 
